@@ -13,7 +13,7 @@ export const useStoreContext = () => useContext(StoreContext);
 
 const Provider: React.FC = ({ children }: { children?: React.ReactNode }) => {
   const [state, basicDispatch] = useReducer(rootReducer, INITIAL_STATE);
-  const dispatch = useCallback(asyncer(basicDispatch, state), []);
+  const dispatch = useCallback(() => asyncer(basicDispatch, state), []);
 
   return (
     <StoreContext.Provider
